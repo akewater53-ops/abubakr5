@@ -1,180 +1,854 @@
-```html
 <!DOCTYPE html>
 <html lang="uz">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Otta Futbol — Yangiliklar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberTech - Futuristic Phones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Asosiy Cyberpunk stillari */
+        
+         :root {
+            --samsung-blue: #1428a0;
+            --iphone-silver: #f5f5f7;
+            --honor-purple: #8a2be2;
+            --cyber-green: #00ff9d;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --grid-color: rgba(20, 40, 160, 0.1);
+            --text-glow: 0 0 10px;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif
+            font-family: 'Courier New', 'Orbitron', monospace;
         }
         
         body {
-            background: #0b0f1a;
+            background-color: var(--dark-bg);
             color: #fff;
-            line-height: 1.6
+            overflow-x: hidden;
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            min-height: 100vh;
+        }
+        /* Neon border effekti */
+        
+        .neon-border {
+            position: relative;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: var(--darker-bg);
         }
         
-        header {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            padding: 20px
+        .samsung-border::before {
+            background: linear-gradient(45deg, var(--samsung-blue), #00a8ff, #1428a0);
         }
         
-        header h1 {
-            text-align: center;
-            font-size: 32px
+        .iphone-border::before {
+            background: linear-gradient(45deg, #888, #f5f5f7, #aaa);
         }
         
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
-            flex-wrap: wrap
+        .honor-border::before {
+            background: linear-gradient(45deg, var(--honor-purple), #ff00ff, #8a2be2);
         }
         
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            transition: .3s
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 12px;
+            z-index: -1;
+            animation: neon-glow 3s linear infinite;
         }
         
-        nav a:hover {
-            background: #00c6ff;
-            color: #000
+        @keyframes neon-glow {
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
         }
+        /* Header */
         
-        .hero {
-            padding: 40px 20px;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1509027572446-af8401acfdc3') center/cover no-repeat
-        }
-        
-        .hero h2 {
-            font-size: 36px;
-            background: rgba(0, 0, 0, .6);
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 10px
+        .cyber-header {
+            background: linear-gradient(to bottom, rgba(10, 10, 15, 0.95), transparent);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
         
         .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .card {
-            background: #111827;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
-            transition: .3s
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        .card:hover {
-            transform: translateY(-8px)
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--cyber-green);
+            text-shadow: var(--text-glow) var(--cyber-green);
+            animation: pulse 2s infinite;
         }
         
-        .card img {
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #00a8ff, var(--cyber-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        /* Navigation */
+        
+        .cyber-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .cyber-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            position: relative;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .cyber-nav a:hover {
+            color: var(--cyber-green);
+            text-shadow: var(--text-glow) var(--cyber-green);
+        }
+        
+        .cyber-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--cyber-green);
+            transition: width 0.3s;
+        }
+        
+        .cyber-nav a:hover::after {
             width: 100%;
-            height: 180px;
-            object-fit: cover
+        }
+        /* Hero Section */
+        
+        .cyber-hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .card .content {
-            padding: 15px
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(20, 40, 160, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+            z-index: -1;
         }
         
-        .card h3 {
-            margin-bottom: 10px;
-            color: #00c6ff
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #00a8ff, var(--cyber-green), var(--honor-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(0, 168, 255, 0.5);
         }
         
-        .card p {
-            font-size: 14px;
-            color: #ddd
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #aaa;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        /* Features Grid */
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
         }
         
-        footer {
-            background: #020617;
+        .feature-card {
+            padding: 30px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon.samsung {
+            color: var(--samsung-blue);
+            text-shadow: var(--text-glow) var(--samsung-blue);
+        }
+        
+        .feature-icon.iphone {
+            color: var(--iphone-silver);
+            text-shadow: var(--text-glow) #888;
+        }
+        
+        .feature-icon.honor {
+            color: var(--honor-purple);
+            text-shadow: var(--text-glow) var(--honor-purple);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title.samsung {
+            color: var(--samsung-blue);
+        }
+        
+        .feature-title.iphone {
+            color: var(--iphone-silver);
+        }
+        
+        .feature-title.honor {
+            color: var(--honor-purple);
+        }
+        /* Phone Showcase */
+        
+        .phone-showcase {
+            margin: 80px 0;
+        }
+        
+        .showcase-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--cyber-green);
+            text-shadow: var(--text-glow) var(--cyber-green);
+        }
+        
+        .phone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .phone-card {
             text-align: center;
             padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .phone-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .phone-image {
+            width: 200px;
+            height: 400px;
+            margin: 0 auto 20px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .samsung-phone {
+            background: linear-gradient(135deg, #0a0a2a, #1428a0);
+        }
+        
+        .iphone-phone {
+            background: linear-gradient(135deg, #1a1a1a, #444);
+        }
+        
+        .honor-phone {
+            background: linear-gradient(135deg, #2a0a2a, #8a2be2);
+        }
+        
+        .phone-screen {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            right: 10px;
+            bottom: 20px;
+            background: var(--darker-bg);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .samsung-screen::before {
+            background: linear-gradient(to right, var(--samsung-blue), #00a8ff);
+        }
+        
+        .iphone-screen::before {
+            background: linear-gradient(to right, #888, #f5f5f7);
+        }
+        
+        .honor-screen::before {
+            background: linear-gradient(to right, var(--honor-purple), #ff00ff);
+        }
+        
+        .phone-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+        
+        .phone-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .samsung-name {
+            color: var(--samsung-blue);
+        }
+        
+        .iphone-name {
+            color: var(--iphone-silver);
+        }
+        
+        .honor-name {
+            color: var(--honor-purple);
+        }
+        
+        .phone-specs {
+            list-style: none;
+            font-size: 0.9rem;
+            color: #aaa;
+            text-align: left;
+            width: 100%;
+        }
+        
+        .phone-specs li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .samsung-specs li::before {
+            color: var(--samsung-blue);
+        }
+        
+        .iphone-specs li::before {
+            color: var(--iphone-silver);
+        }
+        
+        .honor-specs li::before {
+            color: var(--honor-purple);
+        }
+        
+        .phone-specs li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+        }
+        
+        .phone-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        
+        .samsung-price {
+            color: var(--samsung-blue);
+        }
+        
+        .iphone-price {
+            color: var(--iphone-silver);
+        }
+        
+        .honor-price {
+            color: var(--honor-purple);
+        }
+        /* Data Visualization */
+        
+        .data-panel {
+            margin: 80px 0;
+            padding: 40px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin-top: 40px;
-            color: #aaa
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--cyber-green);
+            text-shadow: var(--text-glow) var(--cyber-green);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* Footer */
+        
+        .cyber-footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            border-top: 1px solid rgba(0, 168, 255, 0.2);
+            text-align: center;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: var(--cyber-green);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cyber-green);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 168, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cyber-green);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--cyber-green);
+            color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        /* Animatsiyalar */
+        
+        @keyframes scan-line {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+        
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--cyber-green), transparent);
+            animation: scan-line 3s linear infinite;
+            pointer-events: none;
+            z-index: 999;
+        }
+        /* Mobil moslashuvchanlik */
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .cyber-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .phone-grid {
+                grid-template-columns: 1fr;
+            }
+            .data-panel {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>⚽ Otta Futbol</h1>
-        <nav>
-            <a href="#">Bosh sahifa</a>
-            <a href="#yangiliklar">Yangiliklar</a>
-            <a href="#transfer">Transferlar</a>
-            <a href="#aloqa">Aloqa</a>
-        </nav>
+    <!-- Scan-line effekti -->
+    <div class="scan-line"></div>
+
+    <!-- Header -->
+    <header class="cyber-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="logo-text">CyberTech</div>
+                </div>
+
+                <nav class="cyber-nav">
+                    <ul>
+                        <li><a href="#home">Bosh Sahifa</a></li>
+                        <li><a href="#phones">Telefonlar</a></li>
+                        <li><a href="#features">Xususiyatlar</a></li>
+                        <li><a href="#specs">Texnik Ko'rsatkichlar</a></li>
+                        <li><a href="#contact">Aloqa</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <section class="hero">
-        <h2>Eng so‘nggi futbol yangiliklari</h2>
+    <!-- Hero Section -->
+    <section class="cyber-hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <h1 class="hero-title">KELAJAK TELEFONLARI</h1>
+            <p class="hero-subtitle">
+                DUNYONING ENG KUCHLI TELEFONLARI CYBERPUNK DIZAYNIDA. SAMSUNG, APPLE VA HONOR - HAR BIRI O'ZIGA XOS TEXNOLOGIYA VA USLUBGA EGA.
+            </p>
+            <div class="neon-border" style="display: inline-block; padding: 15px 30px;">
+                <a href="#phones" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.2rem;">
+                    MODELLARNI KO'RISH <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="yangiliklar" class="container">
-        <h2>So‘nggi yangiliklar</h2>
-        <div class="news-grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6" alt="futbol">
-                <div class="content">
-                    <h3>Chempionatning yangi bosqichi boshlandi</h3>
-                    <p>Bugun milliy chempionatning navbatdagi turi start oldi. Kuchli jamoalar maydonga tushmoqda.</p>
+    <!-- Features -->
+    <section class="container" id="features">
+        <div class="neon-border data-panel">
+            <h2 class="showcase-title">BRENDLARNING AFZALLIKLARI</h2>
+
+            <div class="features-grid">
+                <div class="neon-border samsung-border feature-card">
+                    <div class="feature-icon samsung">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <h3 class="feature-title samsung">Samsung S25 Ultra</h3>
+                    <p>200MP AI kamera, S-Pen, 5000mAh batareya va Dynamic AMOLED 2X ekran. Androidning eng yaxshi tajribasi.</p>
                 </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d" alt="stadion">
-                <div class="content">
-                    <h3>Stadionda rekord tomoshabin</h3>
-                    <p>So‘nggi o‘yinda stadionga rekord miqdorda muxlis tashrif buyurdi.</p>
+
+                <div class="neon-border iphone-border feature-card">
+                    <div class="feature-icon iphone">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3 class="feature-title iphone">iPhone 17 Pro Max</h3>
+                    <p>A18 Pro chipset, Titanium korpus, 48MP asosiy kamera va iOS 18. Apple ekotizimining eng kuchi.</p>
                 </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0" alt="gol">
-                <div class="content">
-                    <h3>Ajoyib gol ijtimoiy tarmoqlarda trend</h3>
-                    <p>O‘tgan turdagi chiroyli gol futbol muxlislari orasida katta muhokamaga sabab bo‘ldi.</p>
+
+                <div class="neon-border honor-border feature-card">
+                    <div class="feature-icon honor">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title honor">Honor X9D</h3>
+                    <p>Snapdragon 8+ Gen 2, 100W tez zaryad, 120Hz AMOLED ekran. Yuqori samaradorlik va arzon narx.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="transfer" class="container">
-        <h2>Transfer yangiliklari</h2>
-        <p>Yangi transferlar, mish-mishlar va rasmiy bitimlar shu bo‘limda e’lon qilinadi.</p>
+    <!-- Phone Showcase -->
+    <section class="container" id="phones">
+        <div class="phone-showcase">
+            <h2 class="showcase-title">2024 YILNING ENG YAXSHI TELEFONLARI</h2>
+
+            <div class="phone-grid">
+                <!-- Samsung S25 Ultra -->
+                <div class="neon-border samsung-border phone-card">
+                    <div class="phone-image samsung-phone">
+                        <div class="phone-screen samsung-screen">
+                            <div class="phone-name samsung-name">SAMSUNG S25 ULTRA</div>
+                            <ul class="phone-specs samsung-specs">
+                                <li>Snapdragon 8 Gen 3</li>
+                                <li>16GB RAM / 1TB</li>
+                                <li>6.8" Dynamic AMOLED 2X</li>
+                                <li>200MP + 50MP + 12MP + 10MP</li>
+                                <li>5000mAh / 45W</li>
+                                <li>S-Pen qo'llab-quvvatlash</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3 class="samsung-name">Samsung Galaxy S25 Ultra</h3>
+                    <div class="phone-price samsung-price">$1,299</div>
+                </div>
+
+                <!-- iPhone 17 Pro Max -->
+                <div class="neon-border iphone-border phone-card">
+                    <div class="phone-image iphone-phone">
+                        <div class="phone-screen iphone-screen">
+                            <div class="phone-name iphone-name">iPhone 17 Pro Max</div>
+                            <ul class="phone-specs iphone-specs">
+                                <li>Apple A18 Pro chipset</li>
+                                <li>8GB RAM / 1TB</li>
+                                <li>6.9" Super Retina XDR</li>
+                                <li>48MP + 12MP + 12MP + LiDAR</li>
+                                <li>4852mAh / 30W</li>
+                                <li>Titanium korpus</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3 class="iphone-name">iPhone 17 Pro Max</h3>
+                    <div class="phone-price iphone-price">$1,599</div>
+                </div>
+
+                <!-- Honor X9D -->
+                <div class="neon-border honor-border phone-card">
+                    <div class="phone-image honor-phone">
+                        <div class="phone-screen honor-screen">
+                            <div class="phone-name honor-name">HONOR X9D</div>
+                            <ul class="phone-specs honor-specs">
+                                <li>Snapdragon 8+ Gen 2</li>
+                                <li>12GB RAM / 512GB</li>
+                                <li>6.78" AMOLED 120Hz</li>
+                                <li>108MP + 8MP + 2MP</li>
+                                <li>4800mAh / 100W</li>
+                                <li>Magic UI 8.0</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3 class="honor-name">Honor X9D</h3>
+                    <div class="phone-price honor-price">$699</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="aloqa" class="container">
-        <h2>Aloqa</h2>
-        <p>Biz bilan bog‘lanish: <b>info@ottafutbol.uz</b></p>
+    <!-- Stats -->
+    <section class="container">
+        <div class="neon-border data-panel">
+            <h2 class="showcase-title">TELEFON STATISTIKASI</h2>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">S25 Ultra</div>
+                    <div class="stat-label">AnTuTu: 2.1M ball</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">iPhone 17</div>
+                    <div class="stat-label">Geekbench: 9800 ball</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">Honor X9D</div>
+                    <div class="stat-label">100% 25 daqiqada</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-value">3.5K</div>
+                    <div class="stat-label">Ekran yorqinligi</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>© 2025 Otta Futbol. Barcha huquqlar himoyalangan.</p>
+    <!-- Footer -->
+    <footer class="cyber-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>CyberTech Store</h3>
+                    <p>Kelajak telefonlari bugundan boshlanadi. Cyberpunk dizayni va eng so'nggi texnologiyalarning mukammal uyg'unligi.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Tez Havolalar</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Bosh Sahifa</a></li>
+                        <li><a href="#phones">Telefonlar</a></li>
+                        <li><a href="#features">Xususiyatlar</a></li>
+                        <li><a href="#specs">Texnik Ko'rsatkichlar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Aloqa</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@cybertech.uz</li>
+                        <li><i class="fas fa-phone"></i> +998 90 987 65 43</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Toshkent, Yunusobod</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2024 CyberTech. Barcha huquqlar himoyalangan. Samsung, iPhone va Honor - tegishli kompaniyalarning savdo belgilaridir.
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Interaktiv effektlar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Neon effektlari
+            const neonElements = document.querySelectorAll('.neon-border');
+
+            neonElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Telefon kartalari uchun qo'shimcha effekt
+            const phoneCards = document.querySelectorAll('.phone-card');
+            phoneCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Pastga scroll qilish
+                    window.scrollTo({
+                        top: document.querySelector('.cyber-footer').offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Scan-line tezligini o'zgartirish
+            const scanLine = document.querySelector('.scan-line');
+            scanLine.addEventListener('click', function() {
+                const currentSpeed = getComputedStyle(this).animationDuration;
+                const newSpeed = currentSpeed === '3s' ? '1s' : '3s';
+                this.style.animationDuration = newSpeed;
+            });
+        }); 
+
+        // Scroll effektlari
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const heroBg = document.querySelector('.hero-bg');
+
+            // Parallax effekti
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+            }
+
+            // Header effekti
+            const header = document.querySelector('.cyber-header');
+            if (scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 15, 0.95)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 168, 255, 0.2)';
+            } else {
+                header.style.background = 'linear-gradient(to bottom, rgba(10, 10, 15, 0.95), transparent)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
-```
